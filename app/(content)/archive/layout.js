@@ -1,5 +1,7 @@
 import React from "react";
-import "../globals.css";
+// import "../globals.css";
+import "../../globals.css";
+
 
 export default function ArchiveLayout({ archive, latest }) {
   return (
