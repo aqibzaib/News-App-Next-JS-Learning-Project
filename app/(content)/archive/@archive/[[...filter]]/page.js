@@ -5,26 +5,25 @@ import {
   getAvailableNewsMonths,
   getNewsForYearAndMonth,
 } from "@/lib/news";
-import {} from "@/lib/news";
 
 import Link from "next/link";
 import React from "react";
 
-export default function FilteredNewsPage({ params }) {
+export default async function FilteredNewsPage({ params }) {
   const filter = params.filter;
   const newsYear = params.filter;
   const selectedYear = filter?.[0];
   const selectedMonth = filter?.[1];
   let news;
-  let links = getAvailableNewsYears();
+  let links = await getAvailableNewsYears();
 
   if (selectedYear && !selectedMonth) {
-    news = getNewsForYear(selectedYear);
+    news = await getNewsForYear(selectedYear);
     links = getAvailableNewsMonths(selectedYear);
   }
 
   if (selectedYear && selectedMonth) {
-    news = getNewsForYearAndMonth(selectedYear, selectedMonth);
+    news = await getNewsForYearAndMonth(selectedYear, selectedMonth);
     links = [];
   }
   let newsContent = <p>No News Found for the selected period</p>;
